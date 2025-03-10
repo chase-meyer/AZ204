@@ -1,8 +1,7 @@
-# ComputeSolutions/01-Create-WebApp/deploy.sh
 #!/bin/bash
 
 # Generate a GUID using Python
-WEBAPP_NAME="az204-helloworld-$(python -c 'import uuid; print(uuid.uuid4())')"
+WEBAPP_NAME="az204-authdemo-$(python -c 'import uuid; print(uuid.uuid4())')"
 
 # Create resource group
 az group create --name AZ204RG --location westus
@@ -11,7 +10,7 @@ az group create --name AZ204RG --location westus
 az webapp up --name $WEBAPP_NAME --resource-group AZ204RG --location westus --sku B1 --runtime "PYTHON|3.11"
 
 # Update the README.md file with the new web app URL
-README_FILE="/workspaces/AZ204/ComputeSolutions/AppServiceWebApps/01-Create-WebApp/HelloWorldApp/README.md"
+README_FILE="/workspaces/AZ204/Security/AppService/01-Auth-Demo/AuthDemoApp/README.md"
 LIVE_URL="https://${WEBAPP_NAME}.azurewebsites.net"
 
 if [ -f "$README_FILE" ]; then
