@@ -30,5 +30,12 @@ def secure():
     <a href="/.auth/logout">Logout</a>
     """
 
+@app.route('/api-call')
+def api_call():
+    token = request.headers.get('X-MS-TOKEN-AAD-ID-TOKEN', None)
+    if not token:
+        return "No token available - Please sign in.", 401
+    return f"Simulated API call with token: {token[:20]}... (truncated)"
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=8080)
